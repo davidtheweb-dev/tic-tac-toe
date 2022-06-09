@@ -14,12 +14,24 @@
     <link rel="stylesheet" href="styles/overlays.css" />
     <link rel="stylesheet" href="styles/configuration.css" />
     <link rel="stylesheet" href="styles/game.css" />
+    <script src="scripts/config.js" defer></script>
+    <script src="scripts/game.js" defer></script>
+    <script src="scripts/app.js" defer></script>
   </head>
   <body>
     <div id="backdrop"></div>
     <header id="main-header">
       <h1>Play Tic, Tac, Toe</h1>
-      <p>Built with HTML, CSS, JavaScript and - of course - lots of love!</p>
+      <p>
+        Made with ❤ by
+        <a
+          href="https://twitter.com/davidheweb"
+          target="_blank"
+          rel="nofollow noopener noreferrer"
+          id="author-link"
+          >@davidheweb</a
+        >!
+      </p>
     </header>
     <main>
       <aside class="modal" id="config-overlay">
@@ -31,8 +43,11 @@
             <label for="playername">Player name</label>
             <input type="text" name="playername" id="playername" />
           </div>
+          <p id="config-errors"></p>
           <div>
-            <button type="button" class="btn btn-alt">Cancel</button>
+            <button type="reset" class="btn btn-alt" id="cancel-config-btn">
+              Cancel
+            </button>
             <button type="submit" class="btn">Confirm</button>
           </div>
         </form>
@@ -41,44 +56,58 @@
       <section id="game-configuration">
         <ol>
           <li>
-            <article>
+            <article id="player-1-data">
               <h2>Player 1</h2>
               <h3>PLAYER NAME</h3>
               <p class="player-symbol">X</p>
-              <button class="btn btn-alt">Edit</button>
+              <button
+                class="btn btn-alt"
+                id="edit-player-1-btn"
+                data-playerid="1"
+              >
+                Edit
+              </button>
             </article>
           </li>
           <li>
-            <article>
+            <article id="player-2-data">
               <h2>Player 2</h2>
               <h3>PLAYER NAME</h3>
               <p class="player-symbol">O</p>
-              <button class="btn btn-alt">Edit</button>
+              <button
+                class="btn btn-alt"
+                id="edit-player-2-btn"
+                data-playerid="2"
+              >
+                Edit
+              </button>
             </article>
           </li>
         </ol>
-        <button class="btn">Start new game</button>
+        <button class="btn" id="start-game-btn">Start new game</button>
       </section>
 
       <section id="active-game">
         <article id="game-over">
-          <h2>You won, <span id="winner-game">PLAYER NAME</span>!</h3>
+          <h2 id="winner-sentence">
+            You won, <span id="winner-game">PLAYER NAME</span>!
+          </h2>
           <p>Click "Start new game" above, to start a new game!</p>
         </article>
 
         <p>It's your turn <span id="active-player-name">PLAYER NAME</span>!</p>
         <ol id="game-board">
-          <li class="disabled">X</li>
-          <li></li>
-          <li></li>
+          <li data-col="1" data-row="1"></li>
+          <li data-col="2" data-row="1"></li>
+          <li data-col="3" data-row="1"></li>
 
-          <li></li>
-          <li class="disabled">O</li>
-          <li></li>
+          <li data-col="1" data-row="2"></li>
+          <li data-col="2" data-row="2"></li>
+          <li data-col="3" data-row="2"></li>
 
-          <li class="disabled">O</li>
-          <li class="disabled">O</li>
-          <li></li>
+          <li data-col="1" data-row="3"></li>
+          <li data-col="2" data-row="3"></li>
+          <li data-col="3" data-row="3"></li>
         </ol>
       </section>
     </main>
